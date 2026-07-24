@@ -10,7 +10,7 @@
 .loading-spinner {
   width: var(--size-7);
   height: var(--size-7);
-  border: 3px solid var(--gray-3);
+  border: 3px solid var(--card-border);
   border-top-color: var(--brand);
   border-radius: var(--radius-round);
   animation: spin 0.6s linear infinite;
@@ -23,6 +23,6 @@
 }
 
 .loading-text {
-  color: var(--gray-6);
+  color: var(--text-muted);
   font-size: var(--font-size-1);
 }

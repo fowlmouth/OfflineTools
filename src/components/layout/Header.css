@@ -1,5 +1,5 @@
 .header {
-  background: var(--gray-12);
+  background: var(--header-bg);
   padding: var(--size-3) var(--size-5);
 }
 
@@ -19,7 +19,7 @@
 }
 
 .header-nav a:hover {
-  color: white;
+  color: var(--gray-0);
   background: var(--gray-10);
   text-decoration: none;
 }

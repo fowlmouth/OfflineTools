@@ -9,10 +9,12 @@
 .tool-textarea {
   font-family: var(--font-mono);
   font-size: var(--font-size--1);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-3);
   resize: vertical;
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 .tool-textarea:focus {
@@ -21,7 +23,7 @@
 }
 
 .tool-output {
-  background: var(--gray-1);
+  background: var(--card-bg);
 }
 
 .tool-actions {
@@ -32,10 +34,10 @@
 .tool-actions button {
   padding: var(--size-2) var(--size-4);
   border-radius: var(--radius-2);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   font-size: var(--font-size-0);
   background: var(--brand);
-  color: white;
+  color: var(--brand-foreground);
   border-color: var(--brand);
 }
 
@@ -83,9 +85,9 @@
   padding: var(--size-1) var(--size-3);
   border-radius: var(--radius-2);
   white-space: nowrap;
-  background: var(--gray-2);
-  color: var(--gray-6);
-  border: 1px solid var(--gray-3);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
 }
 
 .format-badge.format-json {
@@ -116,9 +118,11 @@
   flex: 1;
   font-family: var(--font-mono);
   font-size: var(--font-size-0);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-3);
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 .query-input:focus {
@@ -129,11 +133,11 @@
 .query-run {
   padding: var(--size-2) var(--size-4);
   border-radius: var(--radius-2);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   font-size: var(--font-size-0);
-  background: var(--gray-6);
-  color: white;
-  border-color: var(--gray-6);
+  background: var(--text-muted);
+  color: var(--bg);
+  border-color: var(--text-muted);
   white-space: nowrap;
   cursor: pointer;
 }

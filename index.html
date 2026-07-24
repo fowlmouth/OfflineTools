@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Offline Tools</title>
+    <script>
+      (function () {
+        var stored = localStorage.getItem('theme');
+        var valid = ['auto', 'light', 'dark'].indexOf(stored) !== -1 ? stored : 'auto';
+        var effective =
+          valid === 'auto'
+            ? window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+            : valid;
+        document.documentElement.dataset.theme = effective;
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>

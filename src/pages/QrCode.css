@@ -4,11 +4,12 @@
 }
 
 .qr-mode-btn {
-  background: var(--gray-1);
-  border: 1px solid var(--gray-3);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-3);
   font-size: var(--font-size-0);
+  color: var(--text);
   transition: background 0.15s, border-color 0.15s;
 }
 
@@ -33,10 +34,12 @@
 .qr-input-label textarea {
   font-family: var(--font-mono);
   font-size: var(--font-size-0);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-3);
   resize: vertical;
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 .qr-input-label textarea:focus {
@@ -59,10 +62,12 @@
 }
 
 .qr-vcard-fields input {
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-3);
   font-size: var(--font-size-0);
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 .qr-vcard-fields input:focus {
@@ -78,13 +83,14 @@
 .qr-actions button {
   padding: var(--size-2) var(--size-4);
   border-radius: var(--radius-2);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   font-size: var(--font-size-0);
+  color: var(--text);
 }
 
 .qr-actions button:first-child {
   background: var(--brand);
-  color: white;
+  color: var(--brand-foreground);
   border-color: var(--brand);
 }
 

@@ -1,5 +1,7 @@
 import { Link } from 'preact-router/match';
 import { route } from '../../utils/route.js';
+import { useTheme } from '../../hooks/useTheme.js';
+import { ThemeToggle } from './ThemeToggle.jsx';
 import './Header.css';
 
 const tools = [
@@ -10,6 +12,8 @@ const tools = [
 ];
 
 export function Header() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <header class="header">
       <nav class="header-nav">
@@ -18,6 +22,7 @@ export function Header() {
             {tool.label}
           </Link>
         ))}
+        <ThemeToggle theme={theme} setTheme={setTheme} />
       </nav>
     </header>
   );

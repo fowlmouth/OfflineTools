@@ -12,10 +12,10 @@
 .brown-noise-toggle {
   padding: var(--size-3) var(--size-6);
   border-radius: var(--radius-round);
-  border: 1px solid var(--gray-3);
+  border: 1px solid var(--card-border);
   font-size: var(--font-size-1);
   background: var(--brand);
-  color: white;
+  color: var(--brand-foreground);
   border-color: var(--brand);
   min-width: 8rem;
   transition: opacity 0.15s;

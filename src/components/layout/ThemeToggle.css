@@ -1,0 +1,26 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  background: transparent;
+  border: 1px solid var(--gray-10);
+  color: var(--gray-3);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  margin-left: auto;
+}
+
+.theme-toggle:hover {
+  color: white;
+  background: var(--gray-10);
+  border-color: var(--gray-9);
+}
+
+.theme-toggle-icon {
+  font-size: var(--font-size-1);
+  line-height: 1;
+}

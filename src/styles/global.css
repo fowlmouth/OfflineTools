@@ -1,18 +1,36 @@
 @import 'open-props/style';
 @import 'open-props/normalize';
 @import 'open-props/buttons';
+@import 'open-props/theme.light.switch.min.css';
+@import 'open-props/theme.dark.switch.min.css';
 
 :root {
   --brand: var(--blue-6);
   --brand-light: var(--blue-0);
-  --surface: var(--gray-0);
-  --surface-raised: var(--gray-1);
+
+  --bg: var(--surface-1);
+  --text: var(--text-1);
+  --text-muted: var(--text-2);
+  --card-bg: var(--surface-2);
+  --card-border: var(--surface-3);
+  --header-bg: var(--gray-12);
+  --input-bg: var(--surface-2);
+  --brand-foreground: white;
+}
+
+:root[data-theme='dark'] {
+  --header-bg: var(--gray-10);
+  --input-bg: #171a1c;
+}
+
+:root[data-theme='light'] {
+  --header-bg: var(--gray-12);
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--surface);
-  color: var(--gray-9);
+  background: var(--bg);
+  color: var(--text);
   margin: 0;
 }
 

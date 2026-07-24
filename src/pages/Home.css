@@ -15,7 +15,7 @@
 }
 
 .home-hero p {
-  color: var(--gray-6);
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -27,8 +27,8 @@
 
 .tool-card {
   display: block;
-  background: var(--surface-raised);
-  border: 1px solid var(--gray-2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-3);
   padding: var(--size-4) var(--size-5);
   transition: border-color 0.15s, box-shadow 0.15s;
@@ -43,11 +43,11 @@
 .tool-card h2 {
   font-size: var(--font-size-3);
   margin: 0 0 var(--size-2) 0;
-  color: var(--gray-9);
+  color: var(--text);
 }
 
 .tool-card p {
   font-size: var(--font-size-0);
-  color: var(--gray-6);
+  color: var(--text-muted);
   margin: 0;
 }
