@@ -1,0 +1,36 @@
+@import 'open-props/style';
+@import 'open-props/normalize';
+@import 'open-props/buttons';
+
+:root {
+  --brand: var(--blue-6);
+  --brand-light: var(--blue-0);
+  --surface: var(--gray-0);
+  --surface-raised: var(--gray-1);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--surface);
+  color: var(--gray-9);
+  margin: 0;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}

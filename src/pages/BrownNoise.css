@@ -1,0 +1,74 @@
+.brown-noise {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.brown-noise-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.brown-noise-toggle {
+  padding: var(--size-3) var(--size-6);
+  border-radius: var(--radius-round);
+  border: 1px solid var(--gray-3);
+  font-size: var(--font-size-1);
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+  min-width: 8rem;
+  transition: opacity 0.15s;
+}
+
+.brown-noise-toggle:hover {
+  opacity: 0.9;
+}
+
+.brown-noise-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.brown-noise-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+}
+
+.brown-noise-slider label {
+  min-width: 4rem;
+}
+
+.brown-noise-slider input[type='range'] {
+  flex: 1;
+  accent-color: var(--brand);
+}
+
+.brown-noise-slider-value {
+  min-width: 4rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.brown-noise-wakelock {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+}
+
+.brown-noise-wakelock input[type='checkbox'] {
+  width: var(--size-3);
+  height: var(--size-3);
+  accent-color: var(--brand);
+}
+
+.brown-noise-wakelock input[type='checkbox']:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

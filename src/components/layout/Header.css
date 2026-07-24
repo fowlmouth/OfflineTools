@@ -1,0 +1,30 @@
+.header {
+  background: var(--gray-12);
+  padding: var(--size-3) var(--size-5);
+}
+
+.header-nav {
+  display: flex;
+  gap: var(--size-4);
+  align-items: center;
+}
+
+.header-nav a {
+  color: var(--gray-3);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  transition: background 0.15s, color 0.15s;
+}
+
+.header-nav a:hover {
+  color: white;
+  background: var(--gray-10);
+  text-decoration: none;
+}
+
+.header-nav a.active {
+  color: white;
+  background: var(--brand);
+}

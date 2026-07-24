@@ -1,0 +1,63 @@
+.tool-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+}
+
+.tool-textarea {
+  font-family: var(--font-mono);
+  font-size: var(--font-size--1);
+  border: 1px solid var(--gray-3);
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-3);
+  resize: vertical;
+}
+
+.tool-textarea:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: -1px;
+}
+
+.tool-output {
+  background: var(--gray-1);
+}
+
+.tool-actions {
+  display: flex;
+  gap: var(--size-2);
+}
+
+.tool-actions button {
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--gray-3);
+  font-size: var(--font-size-0);
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+}
+
+.tool-actions button:hover {
+  opacity: 0.9;
+}
+
+.validation-badge {
+  font-size: var(--font-size--1);
+  font-weight: var(--font-weight-5);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+}
+
+.validation-badge.valid {
+  background: var(--green-0);
+  color: var(--green-8);
+  border: 1px solid var(--green-2);
+}
+
+.validation-badge.invalid {
+  background: var(--red-0);
+  color: var(--red-8);
+  border: 1px solid var(--red-2);
+}
