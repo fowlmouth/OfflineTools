@@ -17,9 +17,7 @@ describe('Header', () => {
 
     expect(screen.getByText('Home')).toBeDefined();
     expect(screen.getByText('QR Code')).toBeDefined();
-    expect(screen.getByText('JSON')).toBeDefined();
-    expect(screen.getByText('YAML')).toBeDefined();
-    expect(screen.getByText('XML')).toBeDefined();
+    expect(screen.getByText('Data Explorer')).toBeDefined();
     expect(screen.getByText('Brown Noise')).toBeDefined();
   });
 
@@ -28,9 +26,7 @@ describe('Header', () => {
 
     expect(screen.getByText('Home').getAttribute('href')).toBe('/');
     expect(screen.getByText('QR Code').getAttribute('href')).toBe('/qr');
-    expect(screen.getByText('JSON').getAttribute('href')).toBe('/json');
-    expect(screen.getByText('YAML').getAttribute('href')).toBe('/yaml');
-    expect(screen.getByText('XML').getAttribute('href')).toBe('/xml');
+    expect(screen.getByText('Data Explorer').getAttribute('href')).toBe('/data');
     expect(screen.getByText('Brown Noise').getAttribute('href')).toBe('/brown-noise');
   });
 });
