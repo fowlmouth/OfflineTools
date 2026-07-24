@@ -30,8 +30,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm build
-        env:
-          GH_PAGES_BASE: /${{ github.event.repository.name }}/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
