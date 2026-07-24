@@ -1,0 +1,1 @@
+import{o as e,s as t}from"./index-Bc11DN7C.js";function n(n){let[r,i]=e({ready:!1,error:null,api:null});return t(()=>{let e=!1;return n().then(t=>{e||i({ready:!0,error:null,api:t.default})}).catch(t=>{e||i({ready:!1,error:t,api:null})}),()=>{e=!0}},[n]),r}export{n as t};

@@ -1,0 +1,1 @@
+var e={validate:e=>{try{return JSON.parse(e),{valid:!0,error:null}}catch(e){return{valid:!1,error:e.message}}},format:(e,t=2)=>{let n=JSON.parse(e);return JSON.stringify(n,null,t)},minify:e=>JSON.stringify(JSON.parse(e))};export{e as default};

@@ -1,0 +1,4 @@
+var e={validate:e=>{let t=new DOMParser().parseFromString(e,`application/xml`).querySelector(`parsererror`);return t?{valid:!1,error:t.textContent}:{valid:!0,error:null}},format:e=>{let n=new DOMParser().parseFromString(e,`application/xml`),r=n.querySelector(`parsererror`);if(r)throw Error(r.textContent);return t(new XMLSerializer().serializeToString(n))}};function t(e){let t=``,n=0,r=e.replace(/(>)\s*(<)/g,`$1
+$2`).split(`
+`);for(let e of r){let r=e.trim();r&&(r.startsWith(`</`)&&(n=Math.max(0,n-1)),t+=`  `.repeat(n)+r+`
+`,r.startsWith(`<`)&&!r.startsWith(`</`)&&!r.startsWith(`<?`)&&!r.endsWith(`/>`)&&!r.includes(`</`)&&n++)}return t.trimEnd()}export{e as default};
