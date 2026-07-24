@@ -1,13 +1,14 @@
 import { Link } from 'preact-router/match';
+import { route } from '../../utils/route.js';
 import './Header.css';
 
 const tools = [
-  { href: '/', label: 'Home' },
-  { href: '/qr', label: 'QR Code' },
-  { href: '/json', label: 'JSON' },
-  { href: '/yaml', label: 'YAML' },
-  { href: '/xml', label: 'XML' },
-  { href: '/brown-noise', label: 'Brown Noise' },
+  { href: route('/'), label: 'Home' },
+  { href: route('/qr'), label: 'QR Code' },
+  { href: route('/json'), label: 'JSON' },
+  { href: route('/yaml'), label: 'YAML' },
+  { href: route('/xml'), label: 'XML' },
+  { href: route('/brown-noise'), label: 'Brown Noise' },
 ];
 
 export function Header() {

@@ -1,29 +1,30 @@
 import { Link } from 'preact-router/match';
+import { route } from '../utils/route.js';
 import './Home.css';
 
 const tools = [
   {
-    href: '/qr',
+    href: route('/qr'),
     title: 'QR Code Generator',
     description: 'Generate QR codes for URLs, plain text, and contact cards (vCard).',
   },
   {
-    href: '/json',
+    href: route('/json'),
     title: 'JSON Tool',
     description: 'Validate, format, minify, and query JSON with jq-style expressions.',
   },
   {
-    href: '/yaml',
+    href: route('/yaml'),
     title: 'YAML Tool',
     description: 'Validate, convert, and query YAML with yq-style expressions.',
   },
   {
-    href: '/xml',
+    href: route('/xml'),
     title: 'XML Tool',
     description: 'Validate, format, and query XML documents.',
   },
   {
-    href: '/brown-noise',
+    href: route('/brown-noise'),
     title: 'Brown Noise Generator',
     description: 'Continuous brown noise for focus and sleep, generated in your browser.',
   },

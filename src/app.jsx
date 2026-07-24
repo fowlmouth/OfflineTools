@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'preact/compat';
 import { Header } from './components/layout/Header.jsx';
 import { Home } from './pages/Home.jsx';
 import { Loading } from './components/layout/Loading.jsx';
+import { route } from './utils/route.js';
 
 const QrCode = lazy(() => import('./pages/QrCode.jsx').then(m => ({ default: m.QrCode })));
 const JsonTool = lazy(() => import('./pages/JsonTool.jsx').then(m => ({ default: m.JsonTool })));
@@ -17,12 +18,12 @@ export function App() {
       <main>
         <Suspense fallback={<Loading />}>
           <Router>
-            <Home path="/" />
-            <QrCode path="/qr" />
-            <JsonTool path="/json" />
-            <YamlTool path="/yaml" />
-            <XmlTool path="/xml" />
-            <BrownNoise path="/brown-noise" />
+            <Home path={route('/')} />
+            <QrCode path={route('/qr')} />
+            <JsonTool path={route('/json')} />
+            <YamlTool path={route('/yaml')} />
+            <XmlTool path={route('/xml')} />
+            <BrownNoise path={route('/brown-noise')} />
           </Router>
         </Suspense>
       </main>
