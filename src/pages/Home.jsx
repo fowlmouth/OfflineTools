@@ -9,19 +9,9 @@ const tools = [
     description: 'Generate QR codes for URLs, plain text, and contact cards (vCard).',
   },
   {
-    href: route('/json'),
-    title: 'JSON Tool',
-    description: 'Validate, format, minify, and query JSON with jq-style expressions.',
-  },
-  {
-    href: route('/yaml'),
-    title: 'YAML Tool',
-    description: 'Validate, convert, and query YAML with yq-style expressions.',
-  },
-  {
-    href: route('/xml'),
-    title: 'XML Tool',
-    description: 'Validate, format, and query XML documents.',
+    href: route('/data'),
+    title: 'Data Explorer',
+    description: 'Validate, format, convert, and query JSON, YAML, and XML with auto-detection.',
   },
   {
     href: route('/brown-noise'),

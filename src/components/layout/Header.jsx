@@ -5,9 +5,7 @@ import './Header.css';
 const tools = [
   { href: route('/'), label: 'Home' },
   { href: route('/qr'), label: 'QR Code' },
-  { href: route('/json'), label: 'JSON' },
-  { href: route('/yaml'), label: 'YAML' },
-  { href: route('/xml'), label: 'XML' },
+  { href: route('/data'), label: 'Data Explorer' },
   { href: route('/brown-noise'), label: 'Brown Noise' },
 ];
 
