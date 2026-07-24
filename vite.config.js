@@ -17,7 +17,8 @@ function ghPagesFallback() {
 }
 
 function getBase() {
-  if (process.env.GH_PAGES_BASE) return process.env.GH_PAGES_BASE;
+  const configured = process.env.GH_PAGES_BASE;
+  if (configured) return configured.endsWith('/') ? configured : `${configured}/`;
   if (process.env.GITHUB_ACTIONS === 'true' && process.env.GITHUB_REPOSITORY) {
     const repo = process.env.GITHUB_REPOSITORY.split('/').pop();
     if (!repo.endsWith('.github.io')) {
