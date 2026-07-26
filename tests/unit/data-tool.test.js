@@ -1,5 +1,13 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
+import { webcrypto } from 'node:crypto';
 import dataTool from '../../src/tools/data/index.js';
+
+beforeAll(() => {
+  Object.defineProperty(globalThis, 'crypto', {
+    value: webcrypto,
+    configurable: true,
+  });
+});
 
 const jsonInput = '{"name":"Alice","age":30}';
 const yamlInput = 'name: Alice\nage: 30';
@@ -167,6 +175,50 @@ describe('data tool', () => {
 
     it('throws on invalid query', () => {
       expect(() => dataTool.queryData(jsonInput, '.name@')).toThrow();
+    });
+  });
+
+  describe('encodeBase64', () => {
+    it('encodes input to base64', () => {
+      expect(dataTool.encodeBase64('hello')).toBe('aGVsbG8=');
+    });
+
+    it('handles UTF-8 input', () => {
+      expect(dataTool.encodeBase64('café')).toBe('Y2Fmw6k=');
+    });
+  });
+
+  describe('decodeBase64', () => {
+    it('decodes base64 input', () => {
+      expect(dataTool.decodeBase64('aGVsbG8=')).toBe('hello');
+    });
+
+    it('round-trips through encodeBase64', () => {
+      expect(dataTool.decodeBase64(dataTool.encodeBase64('café — 日本'))).toBe('café — 日本');
+    });
+  });
+
+  describe('hash', () => {
+    it('produces the SHA-256 digest of the input', async () => {
+      expect(await dataTool.hash('hello', 'SHA-256')).toBe(
+        '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+      );
+    });
+
+    it('defaults to SHA-256', async () => {
+      expect(await dataTool.hash('hello')).toBe(
+        '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+      );
+    });
+
+    it('rejects unsupported algorithms', async () => {
+      await expect(dataTool.hash('hello', 'MD5')).rejects.toThrow(/Unsupported hash algorithm/);
+    });
+  });
+
+  describe('hashAlgorithms', () => {
+    it('exposes the supported algorithm list', () => {
+      expect(dataTool.hashAlgorithms).toEqual(['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512']);
     });
   });
 });

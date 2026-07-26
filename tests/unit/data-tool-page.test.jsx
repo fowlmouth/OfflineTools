@@ -28,6 +28,10 @@ vi.mock('../../src/tools/data/index.js', () => ({
       if (expr === '.') return JSON.stringify(data, null, 2);
       return 'null';
     },
+    encodeBase64: (input) => btoa(input),
+    decodeBase64: (input) => atob(input),
+    hash: async (input, algorithm = 'SHA-256') => algorithm + ':' + input,
+    hashAlgorithms: ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'],
   },
 }));
 
@@ -205,6 +209,78 @@ describe('DataTool', () => {
 
     await waitFor(() => {
       expect(screen.getByText('—')).toBeDefined();
+    });
+  });
+
+  it('encodes input to base64', async () => {
+    render(<DataTool />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Input')).toBeDefined();
+    });
+
+    fireEvent.input(screen.getByLabelText('Input'), { target: { value: 'hello' } });
+    fireEvent.click(screen.getByText('Encode Base64'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Output').value).toBe(btoa('hello'));
+    });
+  });
+
+  it('decodes base64 input', async () => {
+    render(<DataTool />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Input')).toBeDefined();
+    });
+
+    fireEvent.input(screen.getByLabelText('Input'), { target: { value: btoa('hello') } });
+    fireEvent.click(screen.getByText('Decode Base64'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Output').value).toBe('hello');
+    });
+  });
+
+  it('shows a hash algorithm selector', async () => {
+    render(<DataTool />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Hash algorithm')).toBeDefined();
+    });
+
+    expect(screen.getByText('SHA-256')).toBeDefined();
+    expect(screen.getByText('SHA-512')).toBeDefined();
+  });
+
+  it('generates a hash with the selected algorithm', async () => {
+    render(<DataTool />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Input')).toBeDefined();
+    });
+
+    fireEvent.input(screen.getByLabelText('Input'), { target: { value: 'hello' } });
+    fireEvent.change(screen.getByLabelText('Hash algorithm'), { target: { value: 'SHA-512' } });
+    fireEvent.click(screen.getByText('Generate Hash'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Output').value).toBe('SHA-512:hello');
+    });
+  });
+
+  it('shows an error badge when decode fails', async () => {
+    render(<DataTool />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Input')).toBeDefined();
+    });
+
+    fireEvent.input(screen.getByLabelText('Input'), { target: { value: '!!!not-base64!!!' } });
+    fireEvent.click(screen.getByText('Decode Base64'));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Invalid:/)).toBeDefined();
     });
   });
 });

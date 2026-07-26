@@ -1,6 +1,8 @@
 import yaml from 'js-yaml';
 import { detectFormat } from './detect.js';
 import { query } from './query.js';
+import { encodeBase64, decodeBase64 } from './base64.js';
+import { hash, HASH_ALGORITHMS } from './hash.js';
 
 function xmlToObj(node) {
   if (node.nodeType === 9) {
@@ -186,5 +188,21 @@ export default {
     const data = parseByFormat(input, fmt);
     const result = query(data, expr);
     return JSON.stringify(result === undefined ? null : result, null, 2);
+  },
+
+  encodeBase64(input) {
+    return encodeBase64(input);
+  },
+
+  decodeBase64(input) {
+    return decodeBase64(input);
+  },
+
+  async hash(input, algorithm) {
+    return hash(input, algorithm);
+  },
+
+  get hashAlgorithms() {
+    return HASH_ALGORITHMS;
   },
 };
