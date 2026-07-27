@@ -77,4 +77,12 @@ describe('image tool aggregator', () => {
     expect(typeof api.drawImageTo).toBe('function');
     expect(typeof api.clearCanvas).toBe('function');
   });
+
+  it('exposes flip, rotate, resize, crop transformation methods', async () => {
+    const api = (await import('../../src/tools/image/index.js')).default;
+    expect(typeof api.flip).toBe('function');
+    expect(typeof api.rotate).toBe('function');
+    expect(typeof api.resize).toBe('function');
+    expect(typeof api.crop).toBe('function');
+  });
 });

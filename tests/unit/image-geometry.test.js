@@ -7,6 +7,7 @@ import {
   containDimensions,
   fitResize,
   rotateDimensions,
+  rotateBoundingBox,
   clampCrop,
 } from '../../src/tools/image/geometry.js';
 
@@ -133,6 +134,46 @@ describe('rotateDimensions', () => {
 
   it('wraps degrees greater than 360', () => {
     expect(rotateDimensions({ width: 800, height: 600, degrees: 450 })).toEqual({ width: 600, height: 800 });
+  });
+});
+
+describe('rotateBoundingBox', () => {
+  it('keeps dimensions for 0 degrees', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 0 })).toEqual({ width: 800, height: 600 });
+  });
+
+  it('keeps dimensions for 180 degrees', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 180 })).toEqual({ width: 800, height: 600 });
+  });
+
+  it('swaps dimensions for 90 degrees', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 90 })).toEqual({ width: 600, height: 800 });
+  });
+
+  it('swaps dimensions for 270 degrees', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 270 })).toEqual({ width: 600, height: 800 });
+  });
+
+  it('normalizes negative degrees', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: -90 })).toEqual({ width: 600, height: 800 });
+  });
+
+  it('wraps degrees greater than 360', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 450 })).toEqual({ width: 600, height: 800 });
+  });
+
+  it('computes the larger bounding box for a 45 degree square', () => {
+    expect(rotateBoundingBox({ width: 100, height: 100, degrees: 45 })).toEqual({ width: 141, height: 141 });
+  });
+
+  it('computes the bounding box for an arbitrary angle on a landscape source', () => {
+    expect(rotateBoundingBox({ width: 800, height: 600, degrees: 30 })).toEqual({ width: 993, height: 920 });
+  });
+
+  it('rounds results to integers', () => {
+    const result = rotateBoundingBox({ width: 100, height: 100, degrees: 45 });
+    expect(Number.isInteger(result.width)).toBe(true);
+    expect(Number.isInteger(result.height)).toBe(true);
   });
 });
 

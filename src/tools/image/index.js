@@ -1,5 +1,14 @@
 import { fileToImage, revokeObjectURL } from './load.js';
-import { createCanvas, get2dContext, drawImageTo, clearCanvas } from './canvas.js';
+import {
+  createCanvas,
+  get2dContext,
+  drawImageTo,
+  clearCanvas,
+  flip,
+  rotate,
+  resize,
+  crop,
+} from './canvas.js';
 
 export {
   fileToImage,
@@ -8,6 +17,10 @@ export {
   get2dContext,
   drawImageTo,
   clearCanvas,
+  flip,
+  rotate,
+  resize,
+  crop,
 };
 
 export default {
@@ -17,4 +30,8 @@ export default {
   get2dContext,
   drawImageTo,
   clearCanvas,
+  flip,
+  rotate,
+  resize,
+  crop,
 };

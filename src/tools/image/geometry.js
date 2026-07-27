@@ -44,6 +44,17 @@ export function rotateDimensions({ width, height, degrees }) {
   return { width, height };
 }
 
+export function rotateBoundingBox({ width, height, degrees }) {
+  const normalized = ((degrees % 360) + 360) % 360;
+  const rad = degreesToRadians(normalized);
+  const cos = Math.abs(Math.cos(rad));
+  const sin = Math.abs(Math.sin(rad));
+  return {
+    width: Math.round(width * cos + height * sin),
+    height: Math.round(width * sin + height * cos),
+  };
+}
+
 export function clampCrop({ x, y, width, height, sourceWidth, sourceHeight }) {
   const clampedX = Math.max(0, Math.min(x, sourceWidth));
   const clampedY = Math.max(0, Math.min(y, sourceHeight));
