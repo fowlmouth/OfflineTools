@@ -101,3 +101,40 @@ export function crop(canvas, { x, y, width, height }) {
   );
   return out;
 }
+
+export function drawText(
+  canvas,
+  { text, x, y, font = 'sans-serif', size = 32, color = '#000000', padding = 16 } = {},
+) {
+  const out = createCanvas(canvas.width, canvas.height);
+  const ctx = get2dContext(out);
+  ctx.drawImage(canvas, 0, 0);
+  ctx.save();
+  ctx.font = `${size}px ${font}`;
+  ctx.fillStyle = color;
+  ctx.textBaseline = 'top';
+  if (text) {
+    ctx.fillText(text, x ?? padding, y ?? padding);
+  }
+  ctx.restore();
+  return out;
+}
+
+export function applyFilters(canvas, filters = {}) {
+  const parts = [];
+  if (filters.brightness != null) parts.push(`brightness(${filters.brightness})`);
+  if (filters.contrast != null) parts.push(`contrast(${filters.contrast})`);
+  if (filters.grayscale != null) parts.push(`grayscale(${filters.grayscale})`);
+  if (filters.saturate != null) parts.push(`saturate(${filters.saturate})`);
+  if (filters.blur != null) parts.push(`blur(${filters.blur}px)`);
+  if (filters.sepia != null) parts.push(`sepia(${filters.sepia})`);
+  if (filters.hueRotate != null) parts.push(`hue-rotate(${filters.hueRotate}deg)`);
+
+  const out = createCanvas(canvas.width, canvas.height);
+  const ctx = get2dContext(out);
+  ctx.save();
+  if (parts.length > 0) ctx.filter = parts.join(' ');
+  ctx.drawImage(canvas, 0, 0);
+  ctx.restore();
+  return out;
+}

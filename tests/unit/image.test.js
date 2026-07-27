@@ -85,4 +85,10 @@ describe('image tool aggregator', () => {
     expect(typeof api.resize).toBe('function');
     expect(typeof api.crop).toBe('function');
   });
+
+  it('exposes drawText and applyFilters annotation methods', async () => {
+    const api = (await import('../../src/tools/image/index.js')).default;
+    expect(typeof api.drawText).toBe('function');
+    expect(typeof api.applyFilters).toBe('function');
+  });
 });

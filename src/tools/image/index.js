@@ -8,6 +8,8 @@ import {
   rotate,
   resize,
   crop,
+  drawText,
+  applyFilters,
 } from './canvas.js';
 
 export {
@@ -21,6 +23,8 @@ export {
   rotate,
   resize,
   crop,
+  drawText,
+  applyFilters,
 };
 
 export default {
@@ -34,4 +38,6 @@ export default {
   rotate,
   resize,
   crop,
+  drawText,
+  applyFilters,
 };

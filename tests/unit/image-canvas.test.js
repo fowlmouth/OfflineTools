@@ -8,6 +8,8 @@ import {
   rotate,
   resize,
   crop,
+  drawText,
+  applyFilters,
 } from '../../src/tools/image/canvas.js';
 
 function makeFakeCtx() {
@@ -19,6 +21,11 @@ function makeFakeCtx() {
     save: vi.fn(),
     restore: vi.fn(),
     clearRect: vi.fn(),
+    fillText: vi.fn(),
+    font: '',
+    fillStyle: '',
+    textBaseline: '',
+    filter: '',
   };
 }
 
@@ -310,5 +317,193 @@ describe('crop', () => {
     const source = createCanvas(800, 600);
     const result = crop(source, { x: 0, y: 0, width: 100, height: 100 });
     expect(result).not.toBe(source);
+  });
+});
+
+describe('drawText', () => {
+  it('copies the source canvas then draws the text on top', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hello', x: 10, y: 20 });
+    // first draw is the underlying canvas copy
+    expect(ctx.drawImage).toHaveBeenNthCalledWith(1, source, 0, 0);
+    expect(ctx.fillText).toHaveBeenCalledWith('Hello', 10, 20);
+  });
+
+  it('sets the font string from size and font family', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi', size: 48, font: 'monospace' });
+    expect(ctx.font).toBe('48px monospace');
+  });
+
+  it('defaults size to 32 and font to sans-serif', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi' });
+    expect(ctx.font).toBe('32px sans-serif');
+  });
+
+  it('sets the fill style to the given color', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi', color: '#ff0000' });
+    expect(ctx.fillStyle).toBe('#ff0000');
+  });
+
+  it('anchors text at the top-left padding when position is omitted', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi', padding: 24 });
+    expect(ctx.fillText).toHaveBeenCalledWith('Hi', 24, 24);
+  });
+
+  it('uses a default padding of 16 when neither position nor padding is given', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi' });
+    expect(ctx.fillText).toHaveBeenCalledWith('Hi', 16, 16);
+  });
+
+  it('sets textBaseline to top so the anchor is the upper-left of the glyphs', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi' });
+    expect(ctx.textBaseline).toBe('top');
+  });
+
+  it('wraps the text style changes in save and restore', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: 'Hi' });
+    expect(ctx.save).toHaveBeenCalledTimes(1);
+    expect(ctx.restore).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render text when the text value is empty', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    drawText(source, { text: '' });
+    expect(ctx.fillText).not.toHaveBeenCalled();
+  });
+
+  it('returns a new canvas with the same dimensions as the source', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(400, 300);
+    const result = drawText(source, { text: 'Hi' });
+    expect(result).not.toBe(source);
+    expect(result.width).toBe(400);
+    expect(result.height).toBe(300);
+  });
+});
+
+describe('applyFilters', () => {
+  it('copies the source onto a new canvas', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { brightness: 1.5 });
+    expect(ctx.drawImage).toHaveBeenCalledWith(source, 0, 0);
+  });
+
+  it('builds a brightness() filter from the brightness option', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { brightness: 1.5 });
+    expect(ctx.filter).toBe('brightness(1.5)');
+  });
+
+  it('builds a contrast() filter from the contrast option', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { contrast: 1.2 });
+    expect(ctx.filter).toBe('contrast(1.2)');
+  });
+
+  it('builds a grayscale() filter from the grayscale option', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { grayscale: 0.5 });
+    expect(ctx.filter).toBe('grayscale(0.5)');
+  });
+
+  it('builds a saturate() filter from the saturate option', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { saturate: 2 });
+    expect(ctx.filter).toBe('saturate(2)');
+  });
+
+  it('combines multiple filters into a single space-separated string', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { brightness: 1.1, contrast: 1.3, grayscale: 0, saturate: 1.5 });
+    expect(ctx.filter).toBe('brightness(1.1) contrast(1.3) grayscale(0) saturate(1.5)');
+  });
+
+  it('omits filters that are not provided', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { brightness: 1.5, saturate: 1.2 });
+    expect(ctx.filter).toBe('brightness(1.5) saturate(1.2)');
+  });
+
+  it('leaves ctx.filter as none when no filters are provided', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, {});
+    expect(ctx.filter).toBe('');
+  });
+
+  it('supports blur as a radius in px', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { blur: 4 });
+    expect(ctx.filter).toBe('blur(4px)');
+  });
+
+  it('supports sepia and hue-rotate filters', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { sepia: 0.6, hueRotate: 90 });
+    expect(ctx.filter).toBe('sepia(0.6) hue-rotate(90deg)');
+  });
+
+  it('wraps the filter draw in save and restore', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    applyFilters(source, { brightness: 1.5 });
+    expect(ctx.save).toHaveBeenCalledTimes(1);
+    expect(ctx.restore).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns a new canvas with the same dimensions as the source', () => {
+    const ctx = makeFakeCtx();
+    mockContext(ctx);
+    const source = createCanvas(500, 400);
+    const result = applyFilters(source, { brightness: 1.5 });
+    expect(result).not.toBe(source);
+    expect(result.width).toBe(500);
+    expect(result.height).toBe(400);
   });
 });
