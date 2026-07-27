@@ -14,6 +14,11 @@ const tools = [
     description: 'Validate, format, convert, and query JSON, YAML, and XML with auto-detection.',
   },
   {
+    href: route('/image'),
+    title: 'Image Editor',
+    description: 'Resize, flip, rotate, crop, annotate, and filter images — all in your browser.',
+  },
+  {
     href: route('/brown-noise'),
     title: 'Brown Noise Generator',
     description: 'Continuous brown noise for focus and sleep, generated in your browser.',

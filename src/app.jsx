@@ -7,6 +7,7 @@ import { route } from './utils/route.js';
 
 const QrCode = lazy(() => import('./pages/QrCode.jsx').then(m => ({ default: m.QrCode })));
 const DataTool = lazy(() => import('./pages/DataTool.jsx').then(m => ({ default: m.DataTool })));
+const ImageEditor = lazy(() => import('./pages/ImageEditor.jsx').then(m => ({ default: m.ImageEditor })));
 const BrownNoise = lazy(() => import('./pages/BrownNoise.jsx').then(m => ({ default: m.BrownNoise })));
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
             <Home path={route('/')} />
             <QrCode path={route('/qr')} />
             <DataTool path={route('/data')} />
+            <ImageEditor path={route('/image')} />
             <BrownNoise path={route('/brown-noise')} />
           </Router>
         </Suspense>

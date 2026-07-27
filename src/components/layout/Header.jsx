@@ -8,6 +8,7 @@ const tools = [
   { href: route('/'), label: 'Home' },
   { href: route('/qr'), label: 'QR Code' },
   { href: route('/data'), label: 'Data Explorer' },
+  { href: route('/image'), label: 'Image Editor' },
   { href: route('/brown-noise'), label: 'Brown Noise' },
 ];
 
