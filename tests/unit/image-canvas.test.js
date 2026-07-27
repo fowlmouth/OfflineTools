@@ -10,6 +10,7 @@ import {
   crop,
   drawText,
   applyFilters,
+  exportBlob,
 } from '../../src/tools/image/canvas.js';
 
 function makeFakeCtx() {
@@ -505,5 +506,73 @@ describe('applyFilters', () => {
     expect(result).not.toBe(source);
     expect(result.width).toBe(500);
     expect(result.height).toBe(400);
+  });
+});
+
+describe('exportBlob', () => {
+  it('calls canvas.toBlob with the default PNG type', async () => {
+    const blob = new Blob([new Uint8Array([0])], { type: 'image/png' });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, 'toBlob');
+    toBlob.mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    await exportBlob(canvas);
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), 'image/png', undefined);
+  });
+
+  it('accepts a custom image type', async () => {
+    const blob = new Blob([new Uint8Array([0])], { type: 'image/jpeg' });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, 'toBlob');
+    toBlob.mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    await exportBlob(canvas, { type: 'image/jpeg' });
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), 'image/jpeg', undefined);
+  });
+
+  it('passes quality for lossy jpeg exports', async () => {
+    const blob = new Blob([new Uint8Array([0])], { type: 'image/jpeg' });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, 'toBlob');
+    toBlob.mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    await exportBlob(canvas, { type: 'image/jpeg', quality: 0.8 });
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), 'image/jpeg', 0.8);
+  });
+
+  it('passes quality for lossy webp exports', async () => {
+    const blob = new Blob([new Uint8Array([0])], { type: 'image/webp' });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, 'toBlob');
+    toBlob.mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    await exportBlob(canvas, { type: 'image/webp', quality: 0.9 });
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), 'image/webp', 0.9);
+  });
+
+  it('omits quality when not provided', async () => {
+    const blob = new Blob([new Uint8Array([0])], { type: 'image/jpeg' });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, 'toBlob');
+    toBlob.mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    await exportBlob(canvas, { type: 'image/jpeg' });
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), 'image/jpeg', undefined);
+  });
+
+  it('resolves with the blob produced by toBlob', async () => {
+    const blob = new Blob([new Uint8Array([1, 2, 3])], { type: 'image/png' });
+    vi.spyOn(HTMLCanvasElement.prototype, 'toBlob').mockImplementation((cb) => cb(blob));
+
+    const canvas = createCanvas(100, 100);
+    const result = await exportBlob(canvas);
+    expect(result).toBe(blob);
+  });
+
+  it('rejects when toBlob produces null', async () => {
+    vi.spyOn(HTMLCanvasElement.prototype, 'toBlob').mockImplementation((cb) => cb(null));
+
+    const canvas = createCanvas(100, 100);
+    await expect(exportBlob(canvas)).rejects.toThrow();
   });
 });

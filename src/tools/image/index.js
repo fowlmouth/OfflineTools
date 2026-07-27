@@ -10,7 +10,10 @@ import {
   crop,
   drawText,
   applyFilters,
+  exportBlob,
 } from './canvas.js';
+
+const FORMATS = ['image/png', 'image/jpeg', 'image/webp'];
 
 export {
   fileToImage,
@@ -25,6 +28,8 @@ export {
   crop,
   drawText,
   applyFilters,
+  exportBlob,
+  FORMATS,
 };
 
 export default {
@@ -40,4 +45,6 @@ export default {
   crop,
   drawText,
   applyFilters,
+  export: exportBlob,
+  FORMATS,
 };

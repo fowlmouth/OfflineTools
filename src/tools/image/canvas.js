@@ -138,3 +138,16 @@ export function applyFilters(canvas, filters = {}) {
   ctx.restore();
   return out;
 }
+
+export function exportBlob(canvas, { type = 'image/png', quality } = {}) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (blob) resolve(blob);
+        else reject(new Error('Failed to export canvas to blob'));
+      },
+      type,
+      quality,
+    );
+  });
+}

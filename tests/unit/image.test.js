@@ -91,4 +91,14 @@ describe('image tool aggregator', () => {
     expect(typeof api.drawText).toBe('function');
     expect(typeof api.applyFilters).toBe('function');
   });
+
+  it('exposes export as a function', async () => {
+    const api = (await import('../../src/tools/image/index.js')).default;
+    expect(typeof api.export).toBe('function');
+  });
+
+  it('exposes FORMATS as the list of supported export types', async () => {
+    const api = (await import('../../src/tools/image/index.js')).default;
+    expect(api.FORMATS).toEqual(['image/png', 'image/jpeg', 'image/webp']);
+  });
 });
