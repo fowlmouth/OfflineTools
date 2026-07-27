@@ -23,6 +23,16 @@ const tools = [
     title: 'Brown Noise Generator',
     description: 'Continuous brown noise for focus and sleep, generated in your browser.',
   },
+  {
+    href: route('/password'),
+    title: 'Password Generator',
+    description: 'Create strong, random passwords with cryptographically secure randomness.',
+  },
+  {
+    href: route('/color'),
+    title: 'Color Toolkit',
+    description: 'Convert between HEX, RGB, and HSL, check WCAG contrast, and build palettes.',
+  },
 ];
 
 export function Home() {

@@ -1,0 +1,229 @@
+.color-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  padding: var(--size-4);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-3);
+  background: var(--card-bg);
+}
+
+.color-section h2 {
+  font-size: var(--font-size-2);
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+}
+
+.color-native input[type='color'] {
+  width: var(--size-7);
+  height: var(--size-7);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.color-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  flex: 1;
+}
+
+.color-field input {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-3);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.color-field input[aria-invalid='true'] {
+  border-color: var(--red-6);
+}
+
+.color-preview {
+  width: var(--size-7);
+  height: var(--size-7);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+}
+
+.color-conversions {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+.color-conversion {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.color-conversion dt {
+  font-size: var(--font-size--1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-muted);
+}
+
+.color-conversion dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+}
+
+.color-copy {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--brand);
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.color-contrast-inputs {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+}
+
+.color-contrast-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+}
+
+.color-contrast-field input[type='color'] {
+  width: var(--size-6);
+  height: var(--size-6);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.color-contrast-sample {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-7);
+  width: var(--size-7);
+  height: var(--size-7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-2);
+  border: 1px solid var(--card-border);
+}
+
+.color-contrast-result {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.color-ratio {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+}
+
+.color-badge {
+  font-size: var(--font-size--1);
+  font-weight: var(--font-weight-6);
+  padding: var(--size-1) var(--size-3);
+  border-radius: var(--radius-round);
+}
+
+.color-badge.pass {
+  background: var(--green-0);
+  color: var(--green-8);
+  border: 1px solid var(--green-2);
+}
+
+.color-badge.fail {
+  background: var(--red-0);
+  color: var(--red-8);
+  border: 1px solid var(--red-2);
+}
+
+.color-scheme {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  width: fit-content;
+}
+
+.color-scheme select {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-3);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.color-swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2);
+}
+
+.color-swatch {
+  width: var(--size-7);
+  height: var(--size-7);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.color-swatch-label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size--2);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0 var(--size-1);
+  border-radius: var(--radius-1);
+  margin-bottom: var(--size-1);
+}
+
+.color-swatch:hover {
+  transform: scale(1.03);
+}

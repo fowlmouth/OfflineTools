@@ -24,6 +24,8 @@ describe('Home', () => {
     expect(screen.getByText('QR Code Generator')).toBeDefined();
     expect(screen.getByText('Data Explorer')).toBeDefined();
     expect(screen.getByText('Brown Noise Generator')).toBeDefined();
+    expect(screen.getByText('Password Generator')).toBeDefined();
+    expect(screen.getByText('Color Toolkit')).toBeDefined();
   });
 
   it('links each card to the correct route', () => {
@@ -32,5 +34,7 @@ describe('Home', () => {
     expect(screen.getByText('QR Code Generator').closest('a').getAttribute('href')).toBe('/qr');
     expect(screen.getByText('Data Explorer').closest('a').getAttribute('href')).toBe('/data');
     expect(screen.getByText('Brown Noise Generator').closest('a').getAttribute('href')).toBe('/brown-noise');
+    expect(screen.getByText('Password Generator').closest('a').getAttribute('href')).toBe('/password');
+    expect(screen.getByText('Color Toolkit').closest('a').getAttribute('href')).toBe('/color');
   });
 });

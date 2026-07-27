@@ -10,6 +10,8 @@ const tools = [
   { href: route('/data'), label: 'Data Explorer' },
   { href: route('/image'), label: 'Image Editor' },
   { href: route('/brown-noise'), label: 'Brown Noise' },
+  { href: route('/password'), label: 'Passwords' },
+  { href: route('/color'), label: 'Color' },
 ];
 
 export function Header() {

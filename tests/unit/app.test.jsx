@@ -19,6 +19,8 @@ describe('Header', () => {
     expect(screen.getByText('QR Code')).toBeDefined();
     expect(screen.getByText('Data Explorer')).toBeDefined();
     expect(screen.getByText('Brown Noise')).toBeDefined();
+    expect(screen.getByText('Passwords')).toBeDefined();
+    expect(screen.getByText('Color')).toBeDefined();
   });
 
   it('renders correct href for each tool', () => {
@@ -28,5 +30,7 @@ describe('Header', () => {
     expect(screen.getByText('QR Code').getAttribute('href')).toBe('/qr');
     expect(screen.getByText('Data Explorer').getAttribute('href')).toBe('/data');
     expect(screen.getByText('Brown Noise').getAttribute('href')).toBe('/brown-noise');
+    expect(screen.getByText('Passwords').getAttribute('href')).toBe('/password');
+    expect(screen.getByText('Color').getAttribute('href')).toBe('/color');
   });
 });

@@ -9,6 +9,8 @@ const QrCode = lazy(() => import('./pages/QrCode.jsx').then(m => ({ default: m.Q
 const DataTool = lazy(() => import('./pages/DataTool.jsx').then(m => ({ default: m.DataTool })));
 const ImageEditor = lazy(() => import('./pages/ImageEditor.jsx').then(m => ({ default: m.ImageEditor })));
 const BrownNoise = lazy(() => import('./pages/BrownNoise.jsx').then(m => ({ default: m.BrownNoise })));
+const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator.jsx').then(m => ({ default: m.PasswordGenerator })));
+const ColorToolkit = lazy(() => import('./pages/ColorToolkit.jsx').then(m => ({ default: m.ColorToolkit })));
 
 export function App() {
   return (
@@ -22,6 +24,8 @@ export function App() {
             <DataTool path={route('/data')} />
             <ImageEditor path={route('/image')} />
             <BrownNoise path={route('/brown-noise')} />
+            <PasswordGenerator path={route('/password')} />
+            <ColorToolkit path={route('/color')} />
           </Router>
         </Suspense>
       </main>
