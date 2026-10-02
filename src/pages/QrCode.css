@@ -112,3 +112,31 @@
 .qr-output canvas {
   border-radius: var(--radius-2);
 }
+
+.qr-decode {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.qr-decode input[type='file'] {
+  font-size: var(--font-size-0);
+  color: var(--text);
+}
+
+.qr-error {
+  margin: 0;
+  padding: var(--size-2) var(--size-3);
+  background: var(--red-0);
+  color: var(--red-8);
+  border: 1px solid var(--red-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+}
+
+.qr-decode-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+

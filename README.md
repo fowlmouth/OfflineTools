@@ -8,7 +8,10 @@ Built with **Preact** and **Vite**, deployed as a static single-page app to GitH
 
 - **QR Code Generator** — Create downloadable QR codes (PNG) for plain text, URLs, and vCard contact cards. Powered by `qr-code-styling`.
 - **Data Explorer** — Validate, format, convert, and query JSON, YAML, and XML. Input format is auto-detected. Convert any format to JSON and run jq-style path queries (e.g. `.users[].name`).
+- **Image Editor** — Edit images entirely in the browser: resize (with optional aspect lock), flip, rotate, crop, add text, and apply filters (brightness, contrast, grayscale, saturation). Export to PNG, JPEG, or WebP with adjustable quality.
 - **Brown Noise Generator** — Continuous brown noise for focus and sleep using the Web Audio API. Adjustable volume, tone, and pitch, plus an optional screen wake lock.
+- **Password Generator** — Create strong, random passwords offline using cryptographically secure randomness. Entropy-based strength meter, adjustable length, character-set controls, ambiguous-character exclusion, and batch generation.
+- **Color Toolkit** — Convert between HEX, RGB, and HSL, check WCAG contrast ratios (AA/AAA), and generate color palettes across multiple scheme types.
 
 ## Getting Started
 
@@ -42,9 +45,12 @@ src/
 ├── index.jsx              # Entry point, mounts App
 ├── app.jsx                # Router with lazy-loaded tool pages
 ├── components/layout/     # Header, Loading, ToolPage wrapper
-├── hooks/                 # useWasmTool, useBrownNoise, useWakeLock
-├── pages/                 # Home, QrCode, DataTool, BrownNoise
-├── tools/                 # Tool logic (data, qr, brown-noise)
+├── hooks/                 # useWasmTool, useBrownNoise, useWakeLock, useTheme,
+│                         #   useColorToolkit, usePasswordGenerator
+├── pages/                 # Home, QrCode, DataTool, ImageEditor, BrownNoise,
+│                         #   PasswordGenerator, ColorToolkit
+├── tools/                 # Tool logic (data, qr, image, brown-noise,
+│                         #   password, color)
 ├── utils/                 # Route helpers
 └── styles/                # Global styles + Open Props imports
 ```

@@ -6,7 +6,7 @@ const tools = [
   {
     href: route('/qr'),
     title: 'QR Code Generator',
-    description: 'Generate QR codes for URLs, plain text, and contact cards (vCard).',
+    description: 'Generate QR codes for URLs, plain text, and contact cards (vCard), or read QR codes from images.',
   },
   {
     href: route('/data'),
